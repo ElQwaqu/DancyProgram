@@ -5,9 +5,9 @@
    ========================================================================== */
 
 const CONFIG = {
-  date: "[DATE]",              // shown on the cover, e.g. "Saturday, 12 December 2026"
-  venue: "[VENUE]",            // shown on the cover, e.g. "Grace Chapel, Accra"
-  WEDDING_DATE: "YYYY-MM-DD",  // used for the "Happening now" badge, e.g. "2026-12-12"
+  date: "Saturday 21st November, 2026",              // shown on the cover, e.g. "Saturday, 12 December 2026"
+  venue: "SALO'S PRESTIGIOUS EVENTS CENTER",            // shown on the cover, e.g. "Grace Chapel, Accra"
+  WEDDING_DATE: "2026-11-21",  // used for the "Happening now" badge, e.g. "2026-12-12"
   contactPerson: "[CONTACT NAME, PHONE]",
   pdfPath: "program.pdf",
 };
@@ -53,14 +53,14 @@ const LAST_EVENT_DURATION = 60;
 const BRIDAL_PARTY = {
   couple: [
     { role: "Bride", name: "Nancy Quaye-Laribe" },
-    { role: "Groom", name: "Daniel Appiah Aduakye" },
+    { role: "Groom", name: "Daniel Aduakye Appiah" },
   ],
   honour: [
     { role: "Chief Bridesmaid", name: "Judith Achampong" },
     { role: "Best Man", name: "[TO CONFIRM]" },
   ],
   groups: [
-    { role: "Bridesmaids", names: ["Jessica", "Charity", "Ruth", "Doris", "Rina", "Marita"] },
+    { role: "Bridesmaids", names: ["Jessica", "Charity", "Ruth", "Doris", "Rina", "Diana"] },
     {
       role: "Groomsmen",
       names: [
