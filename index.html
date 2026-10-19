@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nancy &amp; Daniel | Order of the Day</title>
+  <meta name="description" content="The wedding program for Nancy and Daniel: ceremony, reception and bridal party.">
+  <meta name="theme-color" content="#6B1D3A">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nancy &amp; Daniel | Order of the Day">
+  <meta property="og:description" content="The wedding program for Nancy and Daniel: ceremony, reception and bridal party.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#ceremony">Skip to the order of the day</a>
+
+  <header class="hero" id="top">
+    <div class="hero__inner">
+      <!-- Olive branch flourish -->
+      <svg class="flourish flourish--top" viewBox="0 0 220 60" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M20 40 C 60 40, 80 22, 110 22 C 140 22, 160 40, 200 40"/>
+        </g>
+        <g fill="var(--olive-soft)" opacity="0.9">
+          <ellipse cx="52" cy="33" rx="7" ry="2.6" transform="rotate(-28 52 33)"/>
+          <ellipse cx="70" cy="27" rx="7" ry="2.6" transform="rotate(-20 70 27)"/>
+          <ellipse cx="88" cy="23" rx="7" ry="2.6" transform="rotate(-10 88 23)"/>
+          <ellipse cx="60" cy="40" rx="6" ry="2.3" transform="rotate(18 60 40)"/>
+          <ellipse cx="80" cy="33" rx="6" ry="2.3" transform="rotate(14 80 33)"/>
+          <ellipse cx="168" cy="33" rx="7" ry="2.6" transform="rotate(28 168 33)"/>
+          <ellipse cx="150" cy="27" rx="7" ry="2.6" transform="rotate(20 150 27)"/>
+          <ellipse cx="132" cy="23" rx="7" ry="2.6" transform="rotate(10 132 23)"/>
+          <ellipse cx="160" cy="40" rx="6" ry="2.3" transform="rotate(-18 160 40)"/>
+          <ellipse cx="140" cy="33" rx="6" ry="2.3" transform="rotate(-14 140 33)"/>
+        </g>
+        <g>
+          <circle cx="110" cy="18" r="6" fill="var(--blush)"/>
+          <circle cx="110" cy="18" r="2.6" fill="var(--rose)"/>
+          <circle cx="98" cy="24" r="2.4" fill="var(--blush-light)" stroke="var(--blush)" stroke-width="0.8"/>
+          <circle cx="122" cy="24" r="2.4" fill="var(--blush-light)" stroke="var(--blush)" stroke-width="0.8"/>
+        </g>
+      </svg>
+
+      <p class="hero__eyebrow">Together with their families</p>
+      <h1 class="hero__names" id="couple-names">Nancy <span class="amp">&amp;</span> Daniel</h1>
+      <p class="hero__subtitle">Order of the Day</p>
+
+      <svg class="flourish flourish--line" viewBox="0 0 200 16" aria-hidden="true" focusable="false">
+        <path d="M10 8 H 85 M115 8 H 190" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <path d="M100 2 L106 8 L100 14 L94 8 Z" fill="var(--blush)" stroke="var(--rose)" stroke-width="0.8"/>
+      </svg>
+
+      <p class="hero__date" id="wedding-date">[DATE]</p>
+      <p class="hero__venue" id="wedding-venue">[VENUE]</p>
+
+      <a class="btn btn--wine js-pdf-link" href="program.pdf" download>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download Program (PDF)
+      </a>
+    </div>
+
+    <a class="scroll-cue" href="#ceremony">
+      <span>View Order of the Day</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </header>
+
+  <nav class="site-nav" aria-label="Program sections">
+    <ul>
+      <li><a href="#ceremony">Ceremony</a></li>
+      <li><a href="#reception">Reception</a></li>
+      <li><a href="#bridal-party">Bridal Party</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section" id="ceremony" aria-labelledby="ceremony-title">
+      <div class="section__head reveal">
+        <p class="section__kicker">The Ceremony</p>
+        <h2 class="section__title" id="ceremony-title">Order of the Day</h2>
+      </div>
+      <ol class="timeline" id="ceremony-list"></ol>
+    </section>
+
+    <section class="section section--reception" id="reception" aria-labelledby="reception-title">
+      <div class="band reveal">
+        <p class="section__kicker">Celebrate with us</p>
+        <h2 class="section__title" id="reception-title">Reception</h2>
+      </div>
+      <ol class="timeline" id="reception-list"></ol>
+    </section>
+
+    <section class="section section--party" id="bridal-party" aria-labelledby="party-title">
+      <div class="section__head reveal">
+        <p class="section__kicker">With love and support from</p>
+        <h2 class="section__title" id="party-title">Bridal Party</h2>
+      </div>
+      <div class="party" id="party"></div>
+
+      <footer class="site-footer">
+        <svg class="flourish flourish--footer" viewBox="0 0 200 16" aria-hidden="true" focusable="false">
+          <path d="M10 8 H 85 M115 8 H 190" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          <path d="M100 3 C 97 -1, 91 3, 100 13 C 109 3, 103 -1, 100 3 Z" fill="var(--blush)"/>
+        </svg>
+        <p class="site-footer__thanks">Thank you for celebrating with us</p>
+        <p class="site-footer__note">Your presence, prayers and love mean the world to us.</p>
+        <a class="btn btn--outline js-pdf-link" href="program.pdf" download>Download Program (PDF)</a>
+        <p class="site-footer__contact">For enquiries on the day: <span id="contact-person">[CONTACT NAME, PHONE]</span></p>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
