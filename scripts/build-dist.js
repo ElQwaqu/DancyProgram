@@ -18,4 +18,4 @@ for (const file of files) {
   fs.copyFileSync(src, path.join(dist, file));
 }
 
-console.log(`Copied ${files.length} files to dist/. Drag that folder onto https://app.netlify.com/drop`);
+console.log(`Copied ${files.length} files to dist/.`);

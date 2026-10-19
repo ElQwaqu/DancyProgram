@@ -42,6 +42,16 @@ npm run build:pdf
 
 This opens `index.html` in a headless browser with the print stylesheet and saves `program.pdf` (4 A4 pages: cover, ceremony, reception, bridal party). An internet connection is needed so the Google Fonts load; the script warns you if they don't.
 
+## Deploy to Vercel (from GitHub)
+
+Vercel does not generate the PDF; it serves the `program.pdf` committed in the repo. `vercel.json` tells it to skip `npm install` (Puppeteer cannot run on Vercel's build machines), copy the four site files into `dist`, and serve only that folder.
+
+1. Edit your content.
+2. Run `npm run build:pdf` locally to refresh `program.pdf`.
+3. Commit the content change **and** `program.pdf` together, then push to `main`. Vercel deploys automatically.
+
+In the Vercel project settings (**Settings > Build and Deployment**), leave the Build Command, Install Command and Output Directory overrides switched off so `vercel.json` is used. Note that "Redeploy" on an older deployment rebuilds that older commit; pushing a new commit always deploys the latest code.
+
 ## Deploy to Netlify (drag and drop)
 
 1. Run `npm run build`. This regenerates the PDF and copies the four site files (`index.html`, `styles.css`, `script.js`, `program.pdf`) into a `dist` folder.
