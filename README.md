@@ -8,6 +8,7 @@ Everything you are likely to change is at the top of `script.js`:
 
 - `CONFIG`: the date and venue shown on the cover, `WEDDING_DATE` (format `YYYY-MM-DD`, used for the "Happening now" badge), the contact person, and the PDF file name.
 - `CEREMONY` and `RECEPTION`: the timeline. Each item has a `time` (like `"1:00 PM"`), an `event`, and an optional `icon` (`heart`, `glasses`, `bouquet`, `sparkle`, `ring`).
+- `PHOTOGRAPHY`: the Order of Photography, one group name per line. Each is shown as "Couple with ..." (the prefix is set in `PHOTO_PREFIX`).
 - `BRIDAL_PARTY`: names and roles. A value in square brackets (like `"[TO CONFIRM]"`) or `"To be announced"` is shown as a soft, italic placeholder.
 
 The footer thank-you wording and the small "Together with their families" line on the cover are in `index.html`.
@@ -40,7 +41,7 @@ Then, after every content change:
 npm run build:pdf
 ```
 
-This opens `index.html` in a headless browser with the print stylesheet and saves `program.pdf` (4 A4 pages: cover, ceremony, reception, bridal party). An internet connection is needed so the Google Fonts load; the script warns you if they don't.
+This opens `index.html` in a headless browser with the print stylesheet and saves `program.pdf` (5 A4 pages: cover, ceremony, reception, photography, bridal party). An internet connection is needed so the Google Fonts load; the script warns you if they don't.
 
 ## Deploy to Vercel (from GitHub)
 
@@ -63,4 +64,10 @@ Use the `dist` folder, not the whole project folder: the project folder contains
 
 ## QR code
 
-Once the site is live, create a QR code for its address with any QR generator and print it on table cards or signage.
+```
+npm run build:qr
+```
+
+This creates a styled QR code for https://dancyprogram.vercel.app with "Dancy26" lettering: `qr-art.svg` (best for print), `qr-art.png` (2400x2400) and `qr-art-inverted.png` (wine background). The script tries QR versions 7, 8 and 9, makes the lettering as large as it can, and only keeps a result that decodes correctly at full size, 600px, 300px and when blurred. It prints the chosen version, how much of the code the lettering covers, and every test result.
+
+The lettering sits just off-centre because the exact centre holds an alignment pattern that scanners need. Before printing, scan the final card with a few different phones.

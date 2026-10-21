@@ -5,9 +5,15 @@
   "description": "Mobile-first wedding program for Nancy & Daniel, with an auto-generated PDF.",
   "scripts": {
     "build:pdf": "node scripts/generate-pdf.js",
-    "build": "node scripts/build-dist.js"
+    "build": "node scripts/build-dist.js",
+    "build:qr": "node scripts/generate-qr-art.js"
   },
   "devDependencies": {
-    "puppeteer": "^25.14.0"
+    "@fontsource/jost": "^5.3.0",
+    "jsqr": "^1.4.0",
+    "opentype.js": "^2.0.0",
+    "puppeteer": "^25.14.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.5"
   }
 }

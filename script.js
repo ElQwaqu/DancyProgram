@@ -27,7 +27,11 @@ const CEREMONY = [
   { time: "3:00 PM", event: "Pronouncement of Husband & Wife" },
   { time: "3:05 PM", event: "Presentation of the Couple" },
   { time: "3:10 PM", event: "First Dance", icon: "heart" },
-  { time: "3:20 PM", event: "Family & Bridal Party Photographs" },
+  {
+    time: "3:20 PM",
+    event: "Family & Bridal Party Photographs",
+    hint: { text: "See the Order of Photography", href: "#photography" },
+  },
 ];
 
 const RECEPTION = [
@@ -44,6 +48,29 @@ const RECEPTION = [
   { time: "6:00 PM", event: "Open Dance Floor" },
   { time: "7:30 PM", event: "Vote of Thanks" },
   { time: "7:40 PM", event: "Grand Exit of the Newlyweds", icon: "sparkle" },
+];
+
+// Order of Photography: each group is shown as "Couple with <group>"
+const PHOTO_PREFIX = "Couple with";
+const PHOTOGRAPHY = [
+  "Pneuma Gathering International Pastors",
+  "Shepherds",
+  "Lighthouse Pastors",
+  "Bride's Parents",
+  "Groom's Parents",
+  "Both Families",
+  "Bride's Family",
+  "Groom's Family",
+  "Bridesmaids",
+  "Groomsmen",
+  "MBA UCC",
+  "School of Nursing UCC",
+  "Apam Secondary School",
+  "NMTC Cape Coast",
+  "Kwayanko Old Students",
+  "Swedru International School Old Students",
+  "Royal Seed Home School Old Students",
+  "D&N Ushering Agency",
 ];
 
 // How long the last event counts as "happening now" (minutes)
@@ -147,8 +174,40 @@ function renderTimeline(listEl, items) {
     const icon = item.icon && iconSvg(item.icon);
     if (icon) title.appendChild(icon);
 
+    if (item.hint) {
+      const hint = document.createElement("a");
+      hint.className = "timeline__hint";
+      hint.href = item.hint.href;
+      hint.textContent = item.hint.text;
+      body.appendChild(hint);
+    }
+
     li.append(time, body);
     item.el = li;
+    listEl.appendChild(li);
+  });
+}
+
+function renderPhotography(listEl, groups) {
+  groups.forEach((group, i) => {
+    const li = document.createElement("li");
+    li.className = "photo-item reveal";
+
+    const num = document.createElement("span");
+    num.className = "photo-item__num";
+    num.textContent = i + 1;
+
+    const text = document.createElement("span");
+    text.className = "photo-item__text";
+    const prefix = document.createElement("span");
+    prefix.className = "photo-item__prefix";
+    prefix.textContent = PHOTO_PREFIX;
+    const name = document.createElement("span");
+    name.className = "photo-item__name";
+    name.textContent = group;
+    text.append(prefix, " ", name);
+
+    li.append(num, text);
     listEl.appendChild(li);
   });
 }
@@ -305,6 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderTimeline(document.getElementById("ceremony-list"), CEREMONY);
   renderTimeline(document.getElementById("reception-list"), RECEPTION);
+  renderPhotography(document.getElementById("photo-list"), PHOTOGRAPHY);
   renderBridalParty(document.getElementById("party"), BRIDAL_PARTY);
 
   updateHappeningNow();

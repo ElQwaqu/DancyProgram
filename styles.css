@@ -282,6 +282,18 @@ a {
 .site-nav a.is-active { color: var(--wine); }
 .site-nav a.is-active::after { transform: scaleX(1); }
 
+@media (max-width: 480px) {
+  .site-nav ul { padding: 0 4px; }
+  .site-nav a {
+    padding: 0 3px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .site-nav a::after { left: 18%; right: 18%; bottom: 8px; }
+}
+
 /* ---------- Sections ---------- */
 
 .section {
@@ -318,7 +330,8 @@ a {
   background: var(--olive-soft);
 }
 
-.section--reception { padding-top: 24px; }
+.section--reception,
+.section--photos { padding-top: 24px; }
 
 .band {
   text-align: center;
@@ -331,6 +344,13 @@ a {
 }
 @media (min-width: 672px) {
   .band { border-radius: var(--radius); border: 1px solid var(--blush); }
+}
+
+.band__note {
+  max-width: 26rem;
+  margin: 14px auto 0;
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 /* ---------- Timeline ---------- */
@@ -400,6 +420,19 @@ a {
   color: var(--ink);
 }
 
+.timeline__hint {
+  display: inline-flex;
+  align-items: center;
+  flex-basis: 100%;
+  min-height: 44px;
+  margin: -8px 0 -10px;
+  font-size: 0.85rem;
+  color: var(--olive);
+  text-underline-offset: 3px;
+  text-decoration-color: var(--olive-soft);
+}
+.timeline__hint:hover { color: var(--wine); }
+
 .icon {
   display: inline-block;
   width: 1.05em;
@@ -445,6 +478,48 @@ a {
   .timeline__time { font-size: 1rem; }
   .timeline__event { font-size: 0.96rem; }
 }
+
+/* ---------- Order of photography ---------- */
+
+.photo-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.photo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 10px 16px;
+  background: var(--blush-light);
+  border: 1px solid var(--blush);
+  border-radius: var(--radius);
+}
+
+.photo-item__num {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.photo-item__text {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.photo-item__prefix { font-weight: 300; color: var(--olive-soft); }
+.photo-item__name { font-weight: 500; color: var(--olive); }
 
 /* ---------- Bridal party ---------- */
 
@@ -686,6 +761,22 @@ a {
   .timeline__item::before { top: calc(3.5mm + 0.5em); }
   .timeline__time { font-size: 13.5pt; }
   .timeline__event { font-size: 11.5pt; }
+  .timeline__hint { min-height: 0; margin: 0.5mm 0 0; font-size: 9pt; }
+
+  .section--photos { padding-top: 13mm; padding-bottom: 10mm; }
+  .section--photos .band { margin-bottom: 6mm; padding: 5mm 0 4.5mm; }
+  .band__note { margin-top: 2mm; font-size: 10pt; }
+  .photo-list { gap: 1.5mm; }
+  .photo-item {
+    min-height: 0;
+    gap: 4mm;
+    padding: 1.3mm 4mm;
+    border-radius: 8px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .photo-item__num { width: 7mm; height: 7mm; font-size: 9.5pt; }
+  .photo-item__text { font-size: 11pt; }
 
   .section--party { padding-top: 14mm; padding-bottom: 0; display: flex; flex-direction: column; }
   .section--party .section__head { margin-bottom: 6mm; }
