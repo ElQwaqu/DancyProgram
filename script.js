@@ -7,58 +7,64 @@
 const CONFIG = {
   date: "Saturday 21st November, 2026",              // shown on the cover, e.g. "Saturday, 12 December 2026"
   venue: "SALO'S PRESTIGIOUS EVENTS CENTER",            // shown on the cover, e.g. "Grace Chapel, Accra"
-  WEDDING_DATE: "2026-11-21",  // used for the "Happening now" badge, e.g. "2026-12-12"
   contactPerson: "[CONTACT NAME, PHONE]",
   pdfPath: "program.pdf",
 };
 
-// Optional icon per item: "heart", "glasses", "bouquet", "sparkle", "ring"
+// Shown in a card at the top of the Ceremony section. "role" is optional.
+const CLERGY = [
+  { name: "Rev. Frank Apaah" },
+  { name: "Rev. Robert Turkson Williams" },
+  { name: "Pastor Timothy Sapati" },
+  { name: "Pastor Flash Osardu Williams" },
+  { name: "Pastor Timothy Sarpong" },
+];
+
+// Each item: "title", optional "who" (person or group) or "note" (shown in italics),
+// optional icon: "heart", "glasses", "bouquet", "sparkle", "ring"
 const CEREMONY = [
-  { time: "1:00 PM", event: "Guest Arrival & Seating" },
-  { time: "1:15 PM", event: "Bridal Party Processional" },
-  { time: "1:30 PM", event: "Grand Entrance of the Bride" },
-  { time: "1:40 PM", event: "Opening Prayer" },
-  { time: "1:45 PM", event: "Welcome & Introduction" },
-  { time: "1:55 PM", event: "Scripture Reading" },
-  { time: "2:05 PM", event: "Praise & Worship / Special Ministration" },
-  { time: "2:20 PM", event: "Exchange of Vows" },
-  { time: "2:35 PM", event: "Exchange of Rings" },
-  { time: "2:45 PM", event: "Signing of Marriage Certificate" },
-  { time: "3:00 PM", event: "Pronouncement of Husband & Wife" },
-  { time: "3:05 PM", event: "Presentation of the Couple" },
-  { time: "3:10 PM", event: "First Dance", icon: "heart" },
-  {
-    time: "3:20 PM",
-    event: "Family & Bridal Party Photographs",
-    hint: { text: "See the Order of Photography", href: "#photography" },
-  },
+  { title: "Guest Arrival & Seating" },
+  { title: "Bridal March", note: "with her son" },
+  { title: "Worship" },
+  { title: "Nuptial Ceremony", who: "Officiating Clergy" },
+  { title: "Song Ministration", who: "Lady Pastor Trudy" },
+  { title: "Removal of Veil" },
+  { title: "Communion" },
+  { title: "Signing of Certificate & Offering", who: "Pneuma Music" },
+  { title: "First Bible Reading: Genesis 2:18-25", who: "Bernice Banini" },
+  { title: "Second Bible Reading: Ephesians 5:20-25", who: "Pastor Victor Renault" },
+  { title: "Sermon", who: "Rev. Frank Apaah" },
+  { title: "Charge & Blessing" },
+  { title: "Presentation to Congregation" },
+  { title: "Couple File Out" },
 ];
 
 const RECEPTION = [
-  { time: "3:50 PM", event: "Reception Begins", icon: "glasses" },
-  { time: "4:00 PM", event: "Grand Entrance of the Newlyweds" },
-  { time: "4:10 PM", event: "Welcome Address" },
-  { time: "4:20 PM", event: "Dinner / Refreshments" },
-  { time: "4:45 PM", event: "Cutting of the Wedding Cake" },
-  { time: "4:55 PM", event: "Toast to the Couple" },
-  { time: "5:05 PM", event: "Couple's Appreciation Speech" },
-  { time: "5:15 PM", event: "Special Dance / Entertainment" },
-  { time: "5:30 PM", event: "Couple & Bridal Party Games" },
-  { time: "5:50 PM", event: "Bouquet Toss", icon: "bouquet" },
-  { time: "6:00 PM", event: "Open Dance Floor" },
-  { time: "7:30 PM", event: "Vote of Thanks" },
-  { time: "7:40 PM", event: "Grand Exit of the Newlyweds", icon: "sparkle" },
+  { title: "Reception Begins", icon: "glasses" },
+  { title: "Grand Entrance of the Newlyweds" },
+  { title: "Welcome Address" },
+  { title: "Dinner / Refreshments" },
+  { title: "Cutting of the Wedding Cake", who: "Lady Pastor Mrs William Turkson" },
+  { title: "Toast to the Couple" },
+  { title: "Couple's Appreciation Speech" },
+  { title: "Special Dance / Entertainment" },
+  { title: "Couple & Bridal Party Games" },
+  { title: "Bouquet Toss", icon: "bouquet" },
+  { title: "Open Dance Floor" },
+  { title: "Vote of Thanks" },
+  { title: "Grand Exit of the Newlyweds", icon: "sparkle" },
 ];
 
 // Order of Photography: each group is shown as "Couple with <group>"
 const PHOTO_PREFIX = "Couple with";
 const PHOTOGRAPHY = [
-  "Pneuma Gathering International Pastors",
-  "Shepherds",
-  "Lighthouse Pastors",
+  "Officiating Clergy",
   "Bride's Parents",
   "Groom's Parents",
   "Both Families",
+  "Pneuma Gathering International Pastors",
+  "Shepherds",
+  "Lighthouse Pastors",
   "Bride's Family",
   "Groom's Family",
   "Bridesmaids",
@@ -73,13 +79,10 @@ const PHOTOGRAPHY = [
   "D&N Ushering Agency",
 ];
 
-// How long the last event counts as "happening now" (minutes)
-const LAST_EVENT_DURATION = 60;
-
 // Values in [square brackets] or "To be announced" are shown as soft placeholders.
 const BRIDAL_PARTY = {
   couple: [
-    { role: "Bride", name: "Nancy Quaye-Laribe" },
+    { role: "Bride", name: "Nancy Quaye-Larbie" },
     { role: "Groom", name: "Daniel Aduakye Appiah" },
   ],
   honour: [
@@ -159,31 +162,43 @@ function renderTimeline(listEl, items) {
     const li = document.createElement("li");
     li.className = "timeline__item reveal";
 
-    const time = document.createElement("time");
-    time.className = "timeline__time";
-    time.textContent = item.time;
-
     const body = document.createElement("div");
     body.className = "timeline__body";
 
     const title = document.createElement("span");
     title.className = "timeline__event";
-    title.textContent = item.event;
+    title.textContent = item.title;
     body.appendChild(title);
 
     const icon = item.icon && iconSvg(item.icon);
     if (icon) title.appendChild(icon);
 
-    if (item.hint) {
-      const hint = document.createElement("a");
-      hint.className = "timeline__hint";
-      hint.href = item.hint.href;
-      hint.textContent = item.hint.text;
-      body.appendChild(hint);
+    if (item.who || item.note) {
+      const who = document.createElement("span");
+      who.className = item.note ? "timeline__who timeline__who--note" : "timeline__who";
+      who.textContent = item.who || item.note;
+      body.appendChild(who);
     }
 
-    li.append(time, body);
-    item.el = li;
+    li.appendChild(body);
+    listEl.appendChild(li);
+  });
+}
+
+function renderClergy(listEl, clergy) {
+  clergy.forEach((person) => {
+    const li = document.createElement("li");
+    li.className = "clergy__item";
+    const name = document.createElement("span");
+    name.className = "clergy__name";
+    name.textContent = person.name;
+    li.appendChild(name);
+    if (person.role) {
+      const role = document.createElement("span");
+      role.className = "clergy__role";
+      role.textContent = person.role;
+      li.appendChild(role);
+    }
     listEl.appendChild(li);
   });
 }
@@ -260,51 +275,6 @@ function renderBridalParty(el, data) {
   el.append(couple, honour, groups, little);
 }
 
-/* ---------- Happening now ---------- */
-
-function toMinutes(timeStr) {
-  const m = timeStr.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!m) return null;
-  let h = parseInt(m[1], 10) % 12;
-  if (m[3].toUpperCase() === "PM") h += 12;
-  return h * 60 + parseInt(m[2], 10);
-}
-
-function todayIso(now) {
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-}
-
-function updateHappeningNow(now = new Date()) {
-  const schedule = [...CEREMONY, ...RECEPTION];
-  schedule.forEach((item) => {
-    if (!item.el) return;
-    item.el.classList.remove("is-now");
-    item.el.removeAttribute("aria-current");
-    const badge = item.el.querySelector(".now-badge");
-    if (badge) badge.remove();
-  });
-
-  if (todayIso(now) !== CONFIG.WEDDING_DATE) return;
-
-  const minutes = now.getHours() * 60 + now.getMinutes();
-  let current = null;
-  schedule.forEach((item, i) => {
-    const start = toMinutes(item.time);
-    const next = schedule[i + 1];
-    const end = next ? toMinutes(next.time) : start + LAST_EVENT_DURATION;
-    if (start !== null && minutes >= start && minutes < end) current = item;
-  });
-  if (!current || !current.el) return;
-
-  current.el.classList.add("is-now");
-  current.el.setAttribute("aria-current", "step");
-  const badge = document.createElement("span");
-  badge.className = "now-badge";
-  badge.textContent = "Happening now";
-  current.el.querySelector(".timeline__body").appendChild(badge);
-}
-
 /* ---------- Nav highlight and reveal ---------- */
 
 function initActiveNav() {
@@ -362,13 +332,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setText("contact-person", CONFIG.contactPerson);
   document.querySelectorAll(".js-pdf-link").forEach((a) => a.setAttribute("href", CONFIG.pdfPath));
 
+  renderClergy(document.getElementById("clergy-list"), CLERGY);
   renderTimeline(document.getElementById("ceremony-list"), CEREMONY);
   renderTimeline(document.getElementById("reception-list"), RECEPTION);
   renderPhotography(document.getElementById("photo-list"), PHOTOGRAPHY);
   renderBridalParty(document.getElementById("party"), BRIDAL_PARTY);
-
-  updateHappeningNow();
-  setInterval(updateHappeningNow, 60 * 1000);
 
   initActiveNav();
   initReveal();

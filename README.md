@@ -6,8 +6,9 @@ A mobile-first wedding program (plain HTML, CSS and JavaScript) with a matching 
 
 Everything you are likely to change is at the top of `script.js`:
 
-- `CONFIG`: the date and venue shown on the cover, `WEDDING_DATE` (format `YYYY-MM-DD`, used for the "Happening now" badge), the contact person, and the PDF file name.
-- `CEREMONY` and `RECEPTION`: the timeline. Each item has a `time` (like `"1:00 PM"`), an `event`, and an optional `icon` (`heart`, `glasses`, `bouquet`, `sparkle`, `ring`).
+- `CONFIG`: the date and venue shown on the cover, the contact person, and the PDF file name.
+- `CLERGY`: the Officiating Clergy card at the top of the Ceremony section. Each person has a `name` and an optional `role`.
+- `CEREMONY` and `RECEPTION`: the order of events (no times). Each item has a `title`, an optional `who` (the person or group, shown on a second line) or `note` (shown in italics), and an optional `icon` (`heart`, `glasses`, `bouquet`, `sparkle`, `ring`).
 - `PHOTOGRAPHY`: the Order of Photography, one group name per line. Each is shown as "Couple with ..." (the prefix is set in `PHOTO_PREFIX`).
 - `BRIDAL_PARTY`: names and roles. A value in square brackets (like `"[TO CONFIRM]"`) or `"To be announced"` is shown as a soft, italic placeholder.
 

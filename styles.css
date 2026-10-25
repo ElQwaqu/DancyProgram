@@ -353,21 +353,76 @@ a {
   color: var(--muted);
 }
 
+/* ---------- Officiating clergy ---------- */
+
+.clergy {
+  margin-bottom: 32px;
+  padding: 22px 20px 24px;
+  text-align: center;
+  background: var(--blush-light);
+  border: 1px solid var(--blush);
+  border-radius: var(--radius);
+}
+
+.clergy__flourish {
+  display: block;
+  width: 90px;
+  height: 18px;
+  margin: 0 auto 8px;
+  color: var(--olive);
+}
+
+.clergy__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--wine);
+  margin-bottom: 12px;
+}
+
+.clergy__list {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+.clergy__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--olive);
+}
+
+.clergy__role {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--olive-soft);
+}
+
 /* ---------- Timeline ---------- */
 
 .timeline {
-  --time-w: 5.4rem;
-  --gap: 1.6rem;
+  --line-x: 0.7rem;
   position: relative;
+  max-width: 30rem;
+  margin: 0 auto;
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 2.2rem;
 }
 .timeline::before {
   content: "";
   position: absolute;
   top: 10px;
   bottom: 10px;
-  left: calc(var(--time-w) + var(--gap) / 2);
+  left: var(--line-x);
   width: 2px;
   margin-left: -1px;
   background: linear-gradient(180deg, transparent, var(--olive) 4%, var(--olive) 96%, transparent);
@@ -376,17 +431,12 @@ a {
 
 .timeline__item {
   position: relative;
-  display: grid;
-  grid-template-columns: var(--time-w) 1fr;
-  column-gap: var(--gap);
-  align-items: baseline;
   padding: 11px 10px 11px 0;
-  border-radius: 10px;
 }
 .timeline__item::before {
   content: "";
   position: absolute;
-  left: calc(var(--time-w) + var(--gap) / 2);
+  left: calc(var(--line-x) - 2.2rem);
   top: calc(11px + 0.55em);
   width: 13px;
   height: 13px;
@@ -397,21 +447,10 @@ a {
   box-shadow: 0 0 0 1px var(--olive-soft);
 }
 
-.timeline__time {
-  text-align: right;
-  font-family: var(--font-display);
-  font-size: 1.12rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums lining-nums;
-  color: var(--wine);
-  white-space: nowrap;
-}
-
 .timeline__body {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 10px;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .timeline__event {
@@ -420,18 +459,12 @@ a {
   color: var(--ink);
 }
 
-.timeline__hint {
-  display: inline-flex;
-  align-items: center;
-  flex-basis: 100%;
-  min-height: 44px;
-  margin: -8px 0 -10px;
+.timeline__who {
   font-size: 0.85rem;
-  color: var(--olive);
-  text-underline-offset: 3px;
-  text-decoration-color: var(--olive-soft);
+  line-height: 1.3;
+  color: var(--olive-soft);
 }
-.timeline__hint:hover { color: var(--wine); }
+.timeline__who--note { font-style: italic; }
 
 .icon {
   display: inline-block;
@@ -443,41 +476,22 @@ a {
 }
 .icon svg { width: 100%; height: 100%; display: block; }
 
-/* Happening now */
-.timeline__item.is-now {
-  background: var(--blush-light);
+.timeline-note {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--muted);
 }
-.timeline__item.is-now::before {
-  background: var(--wine);
-  border-color: var(--blush-light);
-  box-shadow: 0 0 0 1px var(--wine);
+.timeline-note a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--olive);
+  text-underline-offset: 3px;
+  text-decoration-color: var(--olive-soft);
 }
-@media (prefers-reduced-motion: no-preference) {
-  .timeline__item.is-now::before { animation: pulse 2s ease-out infinite; }
-}
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 1px var(--wine), 0 0 0 0 rgba(107, 29, 58, 0.45); }
-  100% { box-shadow: 0 0 0 1px var(--wine), 0 0 0 10px rgba(107, 29, 58, 0); }
-}
-.timeline__item.is-now .timeline__event { font-weight: 500; color: var(--wine); }
-
-.now-badge {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: var(--wine);
-  color: var(--paper);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 360px) {
-  .timeline { --time-w: 4.6rem; --gap: 1.3rem; }
-  .timeline__time { font-size: 1rem; }
-  .timeline__event { font-size: 0.96rem; }
-}
+.timeline-note a:hover { color: var(--wine); }
 
 /* ---------- Order of photography ---------- */
 
@@ -696,8 +710,7 @@ a {
   .site-nav,
   .btn,
   .scroll-cue,
-  .skip-link,
-  .now-badge {
+  .skip-link {
     display: none !important;
   }
 
@@ -707,9 +720,6 @@ a {
     transform: none !important;
     transition: none !important;
   }
-
-  .timeline__item.is-now { background: none; }
-  .timeline__item.is-now::before { animation: none; }
 
   /* Page 1: cover */
   .hero {
@@ -734,7 +744,7 @@ a {
   .hero__date { font-size: 18pt; }
   .hero__venue { font-size: 15pt; margin-bottom: 0; }
 
-  /* Pages 2 to 4 */
+  /* Pages 2 to 5 */
   .section {
     max-width: none;
     width: 210mm;
@@ -756,12 +766,29 @@ a {
     border-radius: 8px;
   }
 
-  .timeline { --time-w: 26mm; --gap: 9mm; }
-  .timeline__item { padding: 3.5mm 0; break-inside: avoid; }
-  .timeline__item::before { top: calc(3.5mm + 0.5em); }
-  .timeline__time { font-size: 13.5pt; }
+  .section--ceremony { padding-top: 14mm; padding-bottom: 10mm; }
+  .section--ceremony .section__head { margin-bottom: 5mm; }
+  .clergy {
+    margin: 0 auto 5mm;
+    max-width: 120mm;
+    padding: 3mm 6mm 3.5mm;
+    border-radius: 8px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .clergy__flourish { width: 22mm; height: 4.5mm; margin-bottom: 1mm; }
+  .clergy__title { font-size: 15pt; margin-bottom: 1.5mm; }
+  .clergy__list { gap: 0.6mm; }
+  .clergy__name { font-size: 12pt; }
+  .clergy__role { font-size: 6.5pt; margin-top: 0; }
+
+  .timeline { max-width: 120mm; }
+  .timeline__item { padding: 2.2mm 0; break-inside: avoid; page-break-inside: avoid; }
+  .timeline__item::before { top: calc(2.2mm + 0.5em); }
   .timeline__event { font-size: 11.5pt; }
-  .timeline__hint { min-height: 0; margin: 0.5mm 0 0; font-size: 9pt; }
+  .timeline__who { font-size: 9pt; }
+  .timeline-note { margin-top: 3mm; font-size: 9.5pt; }
+  .timeline-note a { min-height: 0; }
 
   .section--photos { padding-top: 13mm; padding-bottom: 10mm; }
   .section--photos .band { margin-bottom: 6mm; padding: 5mm 0 4.5mm; }
