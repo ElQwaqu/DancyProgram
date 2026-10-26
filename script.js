@@ -7,9 +7,14 @@
 const CONFIG = {
   date: "Saturday 21st November, 2026",              // shown on the cover, e.g. "Saturday, 12 December 2026"
   venue: "SALO'S PRESTIGIOUS EVENTS CENTER",            // shown on the cover, e.g. "Grace Chapel, Accra"
-  contactPerson: "[CONTACT NAME, PHONE]",
   pdfPath: "program.pdf",
 };
+
+// Footer contacts, shown in this order. "phone" is optional; "tel" is the number dialled when tapped.
+const CONTACTS = [
+  { label: "Gift Table", name: "Miss Abigail Mensah" },
+  { label: "Enquiries for the Day", name: "Miss Josephine Sarpong", phone: "024 602 6221", tel: "+233246026221" },
+];
 
 // Shown in a card at the top of the Ceremony section. "role" is optional.
 const CLERGY = [
@@ -79,7 +84,7 @@ const PHOTOGRAPHY = [
   "D&N Ushering Agency",
 ];
 
-// Values in [square brackets] or "To be announced" are shown as soft placeholders.
+// Values in [square brackets] are shown as soft placeholders.
 const BRIDAL_PARTY = {
   couple: [
     { role: "Bride", name: "Nancy Quaye-Larbie" },
@@ -103,10 +108,6 @@ const BRIDAL_PARTY = {
         "Kingsford Assiamah",
       ],
     },
-  ],
-  little: [
-    { role: "Flower Girls", name: "To be announced" },
-    { role: "Ring Bearer", name: "To be announced" },
   ],
 };
 
@@ -268,11 +269,30 @@ function renderBridalParty(el, data) {
     groups.appendChild(card);
   });
 
-  const little = document.createElement("div");
-  little.className = "party__row";
-  data.little.forEach((p) => little.appendChild(personCard(p, "small")));
+  el.append(couple, honour, groups);
+}
 
-  el.append(couple, honour, groups, little);
+function renderContacts(el, contacts) {
+  contacts.forEach((c) => {
+    const item = document.createElement("div");
+    item.className = "contact";
+    const label = document.createElement("p");
+    label.className = "contact__label";
+    label.textContent = c.label;
+    const name = document.createElement("p");
+    name.className = "contact__name";
+    name.textContent = c.name;
+    item.append(label, name);
+    if (c.phone) {
+      const phone = document.createElement("a");
+      phone.className = "contact__phone";
+      phone.href = `tel:${c.tel || c.phone.replace(/\s+/g, "")}`;
+      phone.textContent = c.phone;
+      phone.setAttribute("aria-label", `Call ${c.name} on ${c.phone}`);
+      item.appendChild(phone);
+    }
+    el.appendChild(item);
+  });
 }
 
 /* ---------- Nav highlight and reveal ---------- */
@@ -329,7 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   setText("wedding-date", CONFIG.date);
   setText("wedding-venue", CONFIG.venue);
-  setText("contact-person", CONFIG.contactPerson);
   document.querySelectorAll(".js-pdf-link").forEach((a) => a.setAttribute("href", CONFIG.pdfPath));
 
   renderClergy(document.getElementById("clergy-list"), CLERGY);
@@ -337,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTimeline(document.getElementById("reception-list"), RECEPTION);
   renderPhotography(document.getElementById("photo-list"), PHOTOGRAPHY);
   renderBridalParty(document.getElementById("party"), BRIDAL_PARTY);
+  renderContacts(document.getElementById("contacts"), CONTACTS);
 
   initActiveNav();
   initReveal();

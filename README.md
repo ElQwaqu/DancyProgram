@@ -6,7 +6,8 @@ A mobile-first wedding program (plain HTML, CSS and JavaScript) with a matching 
 
 Everything you are likely to change is at the top of `script.js`:
 
-- `CONFIG`: the date and venue shown on the cover, the contact person, and the PDF file name.
+- `CONFIG`: the date and venue shown on the cover, and the PDF file name.
+- `CONTACTS`: the footer contacts (Gift Table, Enquiries for the Day). Each has a `label`, a `name`, and an optional `phone` (as displayed) with `tel` (the number dialled when tapped, e.g. `"+233246026221"`).
 - `CLERGY`: the Officiating Clergy card at the top of the Ceremony section. Each person has a `name` and an optional `role`.
 - `CEREMONY` and `RECEPTION`: the order of events (no times). Each item has a `title`, an optional `who` (the person or group, shown on a second line) or `note` (shown in italics), and an optional `icon` (`heart`, `glasses`, `bouquet`, `sparkle`, `ring`).
 - `PHOTOGRAPHY`: the Order of Photography, one group name per line. Each is shown as "Couple with ..." (the prefix is set in `PHOTO_PREFIX`).
