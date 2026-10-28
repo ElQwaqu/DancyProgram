@@ -19,7 +19,7 @@ const CONTACTS = [
 // Shown in a card at the top of the Ceremony section. "role" is optional.
 const CLERGY = [
   { name: "Rev. Frank Apaah" },
-  { name: "Rev. Robert Turkson Williams" },
+  { name: "Rev. Bob Turkson" },
   { name: "Pastor Timothy Sapati" },
   { name: "Pastor Flash Osardu Williams" },
   { name: "Pastor Timothy Sarpong" },
@@ -49,7 +49,7 @@ const RECEPTION = [
   { title: "Grand Entrance of the Newlyweds" },
   { title: "Welcome Address" },
   { title: "Dinner / Refreshments" },
-  { title: "Cutting of the Wedding Cake", who: "Lady Pastor Mrs William Turkson" },
+  { title: "Cutting of the Wedding Cake", who: "Lady Pastor Ewurabena Turkson" },
   { title: "Toast to the Couple" },
   { title: "Couple's Appreciation Speech" },
   { title: "Special Dance / Entertainment" },
