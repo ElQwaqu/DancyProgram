@@ -29,7 +29,7 @@ const CLERGY = [
 // optional icon: "heart", "glasses", "bouquet", "sparkle", "ring"
 const CEREMONY = [
   { title: "Guest Arrival & Seating" },
-  { title: "Bridal March", note: "with her son" },
+  { title: "Bridal March" },
   { title: "Worship" },
   { title: "Nuptial Ceremony", who: "Officiating Clergy" },
   { title: "Song Ministration", who: "Lady Pastor Trudy" },
@@ -92,7 +92,7 @@ const BRIDAL_PARTY = {
   ],
   honour: [
     { role: "Chief Bridesmaid", name: "Judith Achampong" },
-    { role: "Best Man", name: "[TO CONFIRM]" },
+    { role: "Best Man", name: "Manasseh Amankrah Duodu" },
   ],
   groups: [
     { role: "Bridesmaids", names: ["Jessica", "Charity", "Ruth", "Doris", "Rina", "Diana"] },
@@ -101,9 +101,8 @@ const BRIDAL_PARTY = {
       names: [
         "Cecilia Abena Pokua",
         "Eldridge Cobbinah",
-        "Manasseh Amankrah Duodu",
         "Clement Sarfo Acquah",
-        "Gabriel Amo",
+        "Francis Awuni",
         "Nathaniel Kum",
         "Kingsford Assiamah",
       ],
